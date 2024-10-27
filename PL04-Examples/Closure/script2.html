@@ -1,0 +1,32 @@
+<HTML>
+<HEAD><TITLE>Simple Java Script Closure</TITLE>
+<SCRIPT type="text/javascript">
+    var globalVariable = "global";
+
+    function testClosure() {
+        var localVariable = "local";
+    
+        if (globalVariable == "global") {
+            return function () {
+                var t = document.getElementById("demo");
+                    t.innerText = "saw " + localVariable;
+               };
+        }
+        else {
+            return null;
+        }
+    }
+    window.onload = function() {
+        var f = testClosure();
+        if (f == null) {
+            alert("globalVariable == null");
+        }
+        else {
+            f();
+        }
+    }
+</SCRIPT>
+<BODY>
+<h1 id="demo">TEXT</h1>
+</BODY>
+</HTML>

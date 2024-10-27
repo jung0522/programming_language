@@ -1,0 +1,89 @@
+** 답안은 따로 제공하지 않습니다. 시험 공부한다고 생각하고 풀어보고, 다른 친구들과 의논해보세요
+
+1. C언어와 자바 언어에서 변수의 life-time이 살아 있지만, 스코프에 존재하지 않는 경우의 예를 들어본다.
+2.Consider the following pseudocode.
+1 procedure main()
+2     a : integer := 1
+3     b : integer := 2
+
+4     procedure middle()
+5         b : integer := a
+6         procedure inner()
+7             print a, b
+
+8         a : integer := 3
+9         –– body of middle
+10        inner()
+11        print a, b
+12    –– body of main
+13    middle()
+14    print a, b
+
+Suppose this was code for a language with the declaration-order rules of C (but with nested subroutines)—that is, names must be declared before use, and the scope of a name extends from its declaration through the end of the block. At each print statement, indicate which declarations of a and b are in the referencing environment. What does the program print (or will the compiler identify static semantic errors)? Repeat the exercise for the declaration-order rules of C# (names must be declared before use, but the scope of a name is the entire block in which it is declared).
+
+3. Consider the following pseudocode, assuming nested subroutines and static scope.
+procedure main()
+    g : integer
+    
+    procedure B(a : integer)
+        x : integer
+
+        procedure A(n : integer)
+            g := n
+
+        procedure R(m : integer)
+            write integer(x)
+            x /:= 2 –– integer division
+            if x > 1
+                R(m + 1)
+            else
+                A(m)
+        
+        –– body of B
+        x := a × a
+        R(1)
+    
+    –– body of main
+    B(3)
+    write integer(g)
+    
+(a) What does this program print?
+(b) Show the frames on the stack when A has just been called. For each frame, show the static and dynamic links
+
+4. Consider the following fragment of code in C:
+{
+    int a, b, c;
+    ...
+    {
+        int d, e;
+        ...
+        {
+            int f;
+            ...
+        }
+        ...
+    }
+    ...
+    {
+        int g, h, i;
+        ...
+    }
+    ...
+}
+
+Assume that each integer variable occupies four bytes. How much total space is required for the variables in this code?
+
+5. Consider the following pseudocode:
+
+procedure P(A, B : real)
+    X : real
+    procedure Q(B, C : real)
+        Y : real
+        . . .
+
+    procedure R(A, C : real)
+        Z : real
+        . . .                      –– (*)
+    . . .
+    
+Assuming static scope, what is the referencing environment at the location marked by (*)?
